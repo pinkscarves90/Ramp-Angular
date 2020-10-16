@@ -14,11 +14,11 @@ export class AppComponent {
       // URL to your app's logo
       hostLogoUrl: "https://yourdapp.com/yourlogo.png",
       // int string - wei or token units need to write a function to convert it from github code of ramp
-      swapAmount: "150000000000000000000",
+      swapAmount: "1500000",
       // 'ETH'/'DAI/...
       swapAsset: "BTC",
       //An optional string parameter that allows you to use a non-production version of our widget.
-      url: "https://ri-widget-staging.firebaseapp.com",
+      //url: "https://ri-widget-staging.firebaseapp.com",
       //An optional string parameter that allows you to provide a link the user will be redirected to after completing the flow.
       finalUrl: "https://example.com/redirect",
       // blockchain address of the buyer
