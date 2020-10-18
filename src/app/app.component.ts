@@ -3,7 +3,7 @@ import { RampInstantSDK } from "@ramp-network/ramp-instant-sdk";
 import { AppService } from "./app.service";
 import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: "my-app",
@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
     //   hostAppName: "Durch.net",
     //   // URL to your app's logo
     //   hostLogoUrl: "https://yourdapp.com/yourlogo.png",
-
     //   //parameter that allows our system to properly recognize and count purchases made through your API integration.
     //   hostApiKey: ""
     // })
@@ -30,42 +29,37 @@ export class AppComponent implements OnInit {
     //   .show();
   }
   ngOnInit() {
-    //Do not remove as this is the idenetifier to check the http errors
-    const headers = {
-      Authorization: "Bearer AK-N8AW877C-4D2A3ZPH-4FPG6HW9-7ZTQ3G82",
-      "Content-Type": "application/json",
-      "cache-control": "no-cache",
-      "Postman-Token": "7ad1cd47-a7bc-4126-9333-4983f4c6da5d"
-    };
-    console.log(headers);
-    this.httpClient
-      .post(
-        "https://api.sendwyre.com/v3/orders/reserve",
-        {
-          amount: 10, // always the fiat source Amount without fees
-          sourceCurrency: "EUR",
-          destCurrency: "ETH",
-          referrerAccountId: "AAAAAA_CC",
-          email: "user@sendwyre.com",
-          dest: "ethereum:0x9E01E0E60dF079136a7a1d4ed97d709D5Fe3e341",
-          firstName: "",
-          city: "",
-          phone: "+1111111111",
-          street1: "",
-          country: "", // alpoha 2 country code
-          redirectUrl: "https://google.com",
-          failureRedirectUrl: "https://google.com",
-          paymentMethod: "debit-card",
-          state: "", // state code
-          postalCode: "",
-          lastName: "",
-          lockFields: ["amount"]
-        },
-        { headers }
-      )
-      .subscribe((data: any) => {
-        console.log(data);
-        let reservation = data.reservation;
-      });
+    //   //Do not remove as this is the idenetifier to check the http errors
+    //   const timestamp = new Date().getTime();
+    //   // Store API keys in your environment configuration.
+    //   const YOUR_WYRE_API_KEY = "AK-N8AW877C-4D2A3ZPH-4FPG6HW9-7ZTQ3G82";
+    //   const YOUR_WYRE_SECRET_KEY = "";
+    //   const productionUrl = "https://api.senwyre.com";
+    //   const testUrl = "https://api.testwyre.com";
+    //   const url = `${testUrl}/v3/orders/quote/partner?timestamp=${timestamp}`;
+    //   console.log(url);
+    //   const body = {
+    //     amount: "100.75",
+    //     sourceCurrency: "USD",
+    //     destCurrency: "BTC",
+    //     dest: "bitcoin:1xxxxxxxxxxxxxxx",
+    //     country: "US",
+    //     accountId: "AC_xxxxxxxx",
+    //     walletType: "DEBIT_CARD"
+    //   };
+    //   const details = JSON.stringify(body);
+    //   const headers = new HttpHeaders()
+    //     .set("X-Api-Key", YOUR_WYRE_API_KEY)
+    //     .set("Content-Type", "application/json")
+    //     .set("X-Api-Signature", this.signature(url, details));
+    //   //.set("cache-control", "no-cache");
+    //   this.httpClient.post(url, body, { headers }).subscribe((data: any) => {
+    //     console.log(data);
+    //     let reservation = data.reservation;
+    //   });
+    // }
+    // signature(url, details): string {
+    //   return "";
+    // }
   }
 }
