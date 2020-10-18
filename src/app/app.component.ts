@@ -20,4 +20,6 @@ export class AppComponent {
       .on("*", event => console.log(event))
       .show();
   }
+
+  
 }
