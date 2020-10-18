@@ -18,16 +18,16 @@ export class AppComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private appService: AppService, private httpClient: HttpClient) {
-    new RampInstantSDK({
-      hostAppName: "Durch.net",
-      // URL to your app's logo
-      hostLogoUrl: "https://yourdapp.com/yourlogo.png",
+    // new RampInstantSDK({
+    //   hostAppName: "Durch.net",
+    //   // URL to your app's logo
+    //   hostLogoUrl: "https://yourdapp.com/yourlogo.png",
 
-      //parameter that allows our system to properly recognize and count purchases made through your API integration.
-      hostApiKey: ""
-    })
-      .on("*", event => console.log(event))
-      .show();
+    //   //parameter that allows our system to properly recognize and count purchases made through your API integration.
+    //   hostApiKey: ""
+    // })
+    //   .on("*", event => console.log(event))
+    //   .show();
   }
   ngOnInit() {
     //Do not remove as this is the idenetifier to check the http errors
@@ -63,8 +63,9 @@ export class AppComponent implements OnInit {
         },
         { headers }
       )
-      .subscribe((data: any[]) => {
+      .subscribe((data: any) => {
         console.log(data);
+        let reservation = data.reservation;
       });
   }
 }
