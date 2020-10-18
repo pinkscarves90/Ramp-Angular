@@ -1,8 +1,9 @@
-import { Component, VERSION } from "@angular/core";
+import { Component, OnInit, VERSION } from "@angular/core";
 import { RampInstantSDK } from "@ramp-network/ramp-instant-sdk";
 import { AppService } from "./app.service";
 import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "my-app",
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private httpClient: HttpClient) {
     new RampInstantSDK({
       hostAppName: "Durch.net",
       // URL to your app's logo
@@ -28,15 +29,42 @@ export class AppComponent implements OnInit {
       .on("*", event => console.log(event))
       .show();
   }
-  public ngOnInit() {
+  ngOnInit() {
     //Do not remove as this is the idenetifier to check the http errors
-    this.appService
-      .addUser("")
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(data => {
-        console.log("message::::", data);
-        this.userCount = this.userCount + 1;
-        console.log(this.userCount);
+    const headers = {
+      Authorization: "Bearer AK-N8AW877C-4D2A3ZPH-4FPG6HW9-7ZTQ3G82",
+      "Content-Type": "application/json",
+      "cache-control": "no-cache",
+      "Postman-Token": "7ad1cd47-a7bc-4126-9333-4983f4c6da5d"
+    };
+    console.log(headers);
+    this.httpClient
+      .post(
+        "https://api.sendwyre.com/v3/orders/reserve",
+        {
+          amount: 10, // always the fiat source Amount without fees
+          sourceCurrency: "EUR",
+          destCurrency: "ETH",
+          referrerAccountId: "AAAAAA_CC",
+          email: "user@sendwyre.com",
+          dest: "ethereum:0x9E01E0E60dF079136a7a1d4ed97d709D5Fe3e341",
+          firstName: "",
+          city: "",
+          phone: "+1111111111",
+          street1: "",
+          country: "", // alpoha 2 country code
+          redirectUrl: "https://google.com",
+          failureRedirectUrl: "https://google.com",
+          paymentMethod: "debit-card",
+          state: "", // state code
+          postalCode: "",
+          lastName: "",
+          lockFields: ["amount"]
+        },
+        { headers }
+      )
+      .subscribe((data: any[]) => {
+        console.log(data);
       });
   }
 }
