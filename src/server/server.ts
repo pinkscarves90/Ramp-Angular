@@ -1,17 +1,17 @@
-import * as express from "express";
-import * as path from "path";
-import * as http from "http";
-import * as bodyParser from "body-parser";
+// // import * as express from "express";
+// // import * as path from "path";
+// // import * as http from "http";
+// // import * as bodyParser from "body-parser";
 
-class Server {
-  public app: express.Application;
+// class Server {
+//   public app: express.Application;
 
-  public static bootstrap(): Server {
-    return new Server();
-  }
+//   public static bootstrap(): Server {
+//     return new Server();
+//   }
 
-  constructor() {
-    // create expressjs application
-    this.app = express();
-  }
-}
+//   constructor() {
+//     // create expressjs application
+//     this.app = express();
+//   }
+// }
